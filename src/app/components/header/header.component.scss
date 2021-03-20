@@ -1,0 +1,11 @@
+:host {
+    height: 160px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.header {
+    height: 160px;
+    border-radius: 0 0 0px 100px;
+    background: url('../../../assets/header-background.svg');
+}
