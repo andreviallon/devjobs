@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderConnectedComponent } from './connected-components/header-connected/header-connected.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DARK_MODE_OPTIONS } from 'angular-dark-mode';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,18 @@ import { HeaderConnectedComponent } from './connected-components/header-connecte
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DARK_MODE_OPTIONS,
+      useValue: {
+          darkModeClass: 'my-dark-mode',
+          lightModeClass: 'my-light-mode'
+      }
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

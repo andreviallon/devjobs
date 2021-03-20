@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'header',
@@ -6,13 +6,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     <div class="header">
       <div class="flex-container">
         <h1>devjobs</h1>
-        <dark-mode-toggle [darkMode]="darkMode" (toggleDarkMode)="toggleDarkMode.emit()"></dark-mode-toggle>
+        <dark-mode-toggle></dark-mode-toggle>
       </div>
     </div>
   `,
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent { 
-  @Input() darkMode!: boolean | null
-  @Output() toggleDarkMode = new EventEmitter<void>();
+export class HeaderComponent {
+
 }
