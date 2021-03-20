@@ -1,8 +1,32 @@
-body {
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap');
+
+$violet: #5964E0;
+$lightViolet: #939BF4;
+$darkBlue: #19202D;
+$midnight: #121721;
+$darkGray: #6E8098;
+$gray: #9DAEC2;
+$lightGray: #F4F6F8;
+$white: #FFFFFF;
+
+* {
+    font-family: 'Kumbh Sans', sans-serif;
 }
 
-h1 {
+body, h1 {
     margin: 0;
+}
+  
+body:not(.dark-mode-preloading) {
+    transition: all 0.3s linear;
+}
+
+body.dark-mode {
+    background-color: #2f3542;
+    color: #f1f2f6;
+}
+
+body.light-mode {
+    background-color: #f1f2f6;
+    color: #2f3542;
 }

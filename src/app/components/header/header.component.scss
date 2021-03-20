@@ -9,3 +9,15 @@
     border-radius: 0 0 0px 100px;
     background: url('../../../assets/header-background.svg');
 }
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6rem;
+    height: 70%;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
