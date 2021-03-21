@@ -9,5 +9,5 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
   styleUrls: ['./job-card.component.scss']
 })
 export class JobCardComponent {
-  @Input() job: Job | undefined;
+  @Input() job!: Job;
 }
