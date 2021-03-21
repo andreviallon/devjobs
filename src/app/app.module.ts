@@ -1,21 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HeaderConnectedComponent } from './connected-components/header-connected/header-connected.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DARK_MODE_OPTIONS } from 'angular-dark-mode';
+import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
+import { HeaderComponent } from './components/header/header.component';
+import { JobCardComponent } from './components/job-card/job-card.component';
+import { JobListComponent } from './connected-components/job-list/job-list.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DarkModeToggleComponent,
-    HeaderConnectedComponent
+    JobListComponent,
+    JobCardComponent
   ],
   imports: [
     BrowserModule,

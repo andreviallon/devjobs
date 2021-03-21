@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <header-connected></header-connected>
+    <header></header>
   `,
   styleUrls: ['./app.component.scss']
 })

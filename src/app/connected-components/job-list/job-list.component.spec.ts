@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderConnectedComponent } from './header-connected.component';
+import { JobListComponent } from './job-list.component';
 
-describe('HeaderConnectedComponent', () => {
-  let component: HeaderConnectedComponent;
-  let fixture: ComponentFixture<HeaderConnectedComponent>;
+describe('JobListComponent', () => {
+  let component: JobListComponent;
+  let fixture: ComponentFixture<JobListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderConnectedComponent ]
+      declarations: [ JobListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderConnectedComponent);
+    fixture = TestBed.createComponent(JobListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
