@@ -5,7 +5,8 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
   selector: 'job-card',
   template: `
     <div class="card">
-      <p>{{ job.title }}</p>
+      <h3>{{ job.title }}</h3>
+      <p>{{ job.company }}</p>
     </div>
   `,
   styleUrls: ['./job-card.component.scss']

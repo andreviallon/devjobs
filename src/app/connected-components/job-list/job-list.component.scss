@@ -1,3 +1,5 @@
+@import '/src/styles.scss';
+
 .loading-container {
     display: flex;
     width: 100%;
@@ -12,6 +14,14 @@
 
 .job {
     width: 30%;
-    padding: 0 1.1rem;
+    padding: 0 0.9rem;
     margin: 1rem 0;
+
+    @media only screen and (max-width: $lg) {
+        width: 45%;
+    }
+
+    @media only screen and (max-width: $md) {
+        width: 100%;
+    }
 }
