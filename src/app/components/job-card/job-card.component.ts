@@ -4,7 +4,9 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
 @Component({
   selector: 'job-card',
   template: `
-    <p>{{ job.title }}</p>
+    <div class="card">
+      <p>{{ job.title }}</p>
+    </div>
   `,
   styleUrls: ['./job-card.component.scss']
 })
