@@ -9,6 +9,10 @@ import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode
 import { HeaderComponent } from './components/header/header.component';
 import { JobCardComponent } from './components/job-card/job-card.component';
 import { JobListComponent } from './connected-components/job-list/job-list.component';
+import { JobsState } from './states/jobsState/jobState.state';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -17,13 +21,16 @@ import { JobListComponent } from './connected-components/job-list/job-list.compo
     HeaderComponent,
     DarkModeToggleComponent,
     JobListComponent,
-    JobCardComponent
+    JobCardComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsModule.forRoot([JobsState]),
+    NgxsDispatchPluginModule.forRoot(),
   ],
   providers: [
     {

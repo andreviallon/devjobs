@@ -27,12 +27,10 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@ngxs-labs/dispatch-decorator": "^2.1.0",
     "@ngxs-labs/immer-adapter": "^3.0.5",
-    "@ngxs/logger-plugin": "^3.6.2-dev.master-eaa5d86",
-    "@ngxs/store": "^3.6.2-dev.master-eaa5d86",
+    "@ngxs/store": "^3.7.1",
     "angular-dark-mode": "^1.1.4",
     "axios": "^0.21.1",
     "immer": "^9.0.0",
-    "ngxs": "^2.0.0-rc.20",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
