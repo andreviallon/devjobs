@@ -27,11 +27,11 @@ body {
 }
   
 body:not(.dark-mode-preloading) {
-    transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
+    transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
 }
 
 body.my-dark-mode {
@@ -76,6 +76,11 @@ h3 {
     font-size: 20px;
     font-weight: bold;
     line-height: 24px;
+    transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
 }
 
 h4 {

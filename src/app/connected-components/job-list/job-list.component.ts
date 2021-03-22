@@ -13,15 +13,13 @@ import { FetchJobs } from 'src/app/states/jobsState/jobState.state.action';
     </div>
     <ng-container *ngIf="(jobs$ | async) as jobs">
       <div class="jobs-list-container">
-        <div class="job" *ngFor="let job of jobs">
-          <job-card [job]="job"></job-card>
-        </div>
-      </div>      
+        <job-card *ngFor="let job of jobs" [job]="job"></job-card>
+      </div>
     </ng-container>
   `,
   styleUrls: ['./job-list.component.scss']
 })
-export class JobListComponent implements OnInit {
+export class JobListComponent implements OnInit { 
   @Select(JobsState.jobs) jobs$!: Observable<Job[]>;
   @Select(JobsState.fetchingJobs) fetchingJobs$!: Observable<boolean>;
 
