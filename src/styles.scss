@@ -17,6 +17,9 @@ $white: #FFFFFF;
 
 * {
     font-family: 'Kumbh Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -24,7 +27,11 @@ body {
 }
   
 body:not(.dark-mode-preloading) {
-    transition: all 0.3s linear;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
 }
 
 body.my-dark-mode {
@@ -32,6 +39,10 @@ body.my-dark-mode {
     color: $white;
 
     .card {
+        background-color: $darkBlue;
+    }
+
+    img {
         background-color: $darkBlue;
     }
 }
@@ -43,29 +54,52 @@ body.my-light-mode {
     .card {
         background-color: $white;
     }
+
+    img {
+        background-color: $white;
+    }
 }
 
 h1 {
     font-size: 28px;
     font-weight: bold;
+    line-height: 34px;
 }
 
 h2 {
     font-size: 24px;
     font-weight: bold;
+    line-height: 29px;
 }
 
 h3 {
     font-size: 20px;
     font-weight: bold;
+    line-height: 24px;
 }
 
 h4 {
     font-size: 14px;
     font-weight: bold;
+    line-height: 18px;
+    color: $violet
 }
 
 p, span {
     font-size: 16px;
+    line-height: 26px;
     color: $darkGray;
+    margin: 0;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.card {
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
 }
