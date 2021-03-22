@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { Navigate } from '@ngxs/router-plugin';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
-import { FetchJobs } from 'src/app/states/jobsState/jobState.state.action';
 
 @Component({
   selector: 'job-list',
@@ -13,19 +13,15 @@ import { FetchJobs } from 'src/app/states/jobsState/jobState.state.action';
     </div>
     <ng-container *ngIf="(jobs$ | async) as jobs">
       <div class="jobs-list-container">
-        <job-card *ngFor="let job of jobs" [job]="job"></job-card>
+        <job-card *ngFor="let job of jobs" [job]="job" (navigateToJob)="navigateToJob($event)"></job-card>
       </div>
     </ng-container>
   `,
   styleUrls: ['./job-list.component.scss']
 })
-export class JobListComponent implements OnInit { 
+export class JobListComponent { 
   @Select(JobsState.jobs) jobs$!: Observable<Job[]>;
   @Select(JobsState.fetchingJobs) fetchingJobs$!: Observable<boolean>;
 
-  @Dispatch() fetchJobs = (pageIndex: number) => new FetchJobs(pageIndex);
-
-  public ngOnInit(): void {
-    this.fetchJobs(1);
-  }
+  @Dispatch() navigateToJob = (jobId: string) => new Navigate(['/job', jobId]);
 }

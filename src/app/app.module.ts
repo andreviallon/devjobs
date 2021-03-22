@@ -13,7 +13,8 @@ import { JobsState } from './states/jobsState/jobState.state';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { JobDetailsComponent } from './connected-components/job-details/job-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     DarkModeToggleComponent,
     JobListComponent,
     JobCardComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    JobDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     FontAwesomeModule,
     ReactiveFormsModule,
     NgxsModule.forRoot([JobsState]),
+    NgxsRouterPluginModule.forRoot(),
     NgxsDispatchPluginModule.forRoot(),
   ],
   providers: [

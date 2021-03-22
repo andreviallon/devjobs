@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Navigate } from '@ngxs/router-plugin';
+import { Store } from '@ngxs/store';
 import { Job } from 'src/app/states/jobsState/jobState.state';
 
 @Component({
   selector: 'job-card',
   template: `
-    <div class="card">
+    <div class="card" (click)="navigateToJob.emit(job.id)">
       <img src="{{ job.company_logo }}" />
       <div class="flex-container">
         <p>{{ job.type }}</p>
@@ -19,4 +21,5 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
 })
 export class JobCardComponent {
   @Input() job!: Job;
+  @Output() navigateToJob = new EventEmitter<string>();
 }

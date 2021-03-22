@@ -90,13 +90,12 @@ export class JobsState {
   fetchJobsSuccess({ setState }: StateContext<JobsStateModel>, { jobs }: FetchJobsSuccess) {
     const jobDictionary: JobDictionary = {};
 
-    for(const job of jobs) {
+    for (const job of jobs) {
       jobDictionary[job.id] = job;
     }
 
-    console.log('jobDictionary =>', jobDictionary);
     setState((state: JobsStateModel) => {
-        state.jobs = jobDictionary;
+      state.jobs = jobDictionary;
       state.fetchingJobs = false;
       return state;
     });
