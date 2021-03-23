@@ -15,6 +15,9 @@ $gray: #9DAEC2;
 $lightGray: #F4F6F8;
 $white: #FFFFFF;
 
+$imgBorderLight: #EDF1F7;
+$imgBorderDark: #232E42;
+
 * {
     font-family: 'Kumbh Sans', sans-serif;
     text-rendering: optimizeLegibility;
@@ -42,8 +45,18 @@ body.my-dark-mode {
         background-color: $darkBlue;
     }
 
-    img {
+    .job-img {
         background-color: $darkBlue;
+        border: 1px solid $imgBorderDark;
+    }
+
+    .secondary {
+        color: $white;
+        background: rgba(255, 255, 255, 0.1);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
     }
 }
 
@@ -55,8 +68,18 @@ body.my-light-mode {
         background-color: $white;
     }
 
-    img {
+    .job-img {
         background-color: $white;
+        border: 1px solid $imgBorderLight;
+    }
+
+    button.secondary {
+        color: $violet;
+        background: rgba(89, 100, 224, 0.1);
+
+        &:hover {
+            background-color: rgba(89, 100, 224, 0.35);
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext, StateToken } from "@ngxs/store";
 import { Injectable } from "@angular/core";
 import { ImmutableContext } from "@ngxs-labs/immer-adapter";
-import { FetchJobs, FetchJobsSuccess } from "./jobState.state.action";
+import { FetchJobs, FetchJobsSuccess, SetSelectedJob } from "./jobState.state.action";
 import axios from "axios";
 
 const JOBS_API = 'https://cors.bridged.cc/https://jobs.github.com/positions.json';
@@ -26,6 +26,7 @@ export interface JobDictionary {
 
 export interface JobsStateModel {
   jobs: JobDictionary;
+  selectedJobId: string | undefined;
   pageIndex: number;
   fetchingJobs: boolean;
   errorMessage: string;
@@ -33,6 +34,7 @@ export interface JobsStateModel {
 
 export const JobsStateModelDefaults: JobsStateModel = {
   jobs: {},
+  selectedJobId: undefined,
   pageIndex: 0,
   fetchingJobs: false,
   errorMessage: ''
@@ -61,6 +63,11 @@ export class JobsState {
   @Selector([JOBS_STATE])
   static errorMessage(state: JobsStateModel): string {
     return state.errorMessage;
+  }
+  
+  @Selector([JOBS_STATE])
+  static selectedJob(state: JobsStateModel): Job | undefined {
+    return state.jobs && state.selectedJobId ? state.jobs[state.selectedJobId] : undefined;
   }
 
   @Action(FetchJobs)
@@ -97,6 +104,15 @@ export class JobsState {
     setState((state: JobsStateModel) => {
       state.jobs = jobDictionary;
       state.fetchingJobs = false;
+      return state;
+    });
+  }
+
+  @Action(SetSelectedJob)
+  @ImmutableContext()
+  setSelectedJob({ setState }: StateContext<JobsStateModel>, { jobId }: SetSelectedJob) {
+    setState((state: JobsStateModel) => {
+      state.selectedJobId = jobId;
       return state;
     });
   }

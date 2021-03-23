@@ -7,7 +7,7 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
   selector: 'job-card',
   template: `
     <div class="card" (click)="navigateToJob.emit(job.id)">
-      <img src="{{ job.company_logo }}" />
+      <img class="job-img" src="{{ job.company_logo }}" />
       <div class="flex-container">
         <p>{{ job.type }}</p>
         <div class="dot"></div>
