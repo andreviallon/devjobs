@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Navigate } from '@ngxs/router-plugin';
-import { Store } from '@ngxs/store';
 import { Job } from 'src/app/states/jobsState/jobState.state';
 
 @Component({
@@ -12,7 +10,7 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
         <p>{{ job.type }}</p>
         <div class="dot"></div>
       </div>
-      <h3>{{ job.title }}</h3>
+      <h2>{{ job.title }}</h2>
       <p>{{ job.company }}</p>
       <h4 class="capitalize location">{{ job.location }}</h4>
     </div>
@@ -21,5 +19,6 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
 })
 export class JobCardComponent {
   @Input() job!: Job;
+
   @Output() navigateToJob = new EventEmitter<string>();
 }

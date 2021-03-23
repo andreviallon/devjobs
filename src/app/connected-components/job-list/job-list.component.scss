@@ -1,5 +1,9 @@
 @import '/src/styles.scss';
 
+:host {
+    margin: 6rem 0;
+}
+
 .loading-container {
     display: flex;
     width: 100%;

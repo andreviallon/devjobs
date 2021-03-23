@@ -1,13 +1,10 @@
+:host {
+    margin: -3rem 0 0;
+}
+
 .loading-container {
     display: flex;
     width: 100%;
     justify-content: center;
     margin-top: 1rem;
-}
-
-job-header {
-    position: absolute;
-    top: 110px;
-    right: 0;
-    left: 0;
 }
