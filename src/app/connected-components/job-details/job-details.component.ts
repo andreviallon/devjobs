@@ -10,8 +10,8 @@ import { SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
   selector: 'job-details',
   template: `
     <ng-container *ngIf="selectedJob$ | async as selectedJob">
-      <job-details-header [job]="selectedJob"></job-details-header>
-      <job-details-content [job]="selectedJob"></job-details-content>
+      <job-details-header [job]="selectedJob" (goToCompanySite)="goToCompanySite($event)"></job-details-header>
+      <job-details-content [job]="selectedJob" (goToCompanySite)="goToCompanySite($event)"></job-details-content>
     </ng-container>
     <div class="container">
       <div *ngIf="fetchingJobs$ | async" class="loading-container">
@@ -35,6 +35,11 @@ export class JobDetailsComponent implements OnInit {
     this.subscription.add(this.route.params.subscribe(params => {
       this.setSelectedJob(params.id);
     }))
+  }
+
+  public goToCompanySite(url: string){
+
+    window.open(url, "_blank");
   }
 
   public ngOnDestroy(): void {

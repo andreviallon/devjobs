@@ -16,6 +16,9 @@ import * as moment from 'moment';
           <h1>{{ job.title }}</h1>
           <h4>{{ job.location }}</h4>
         </div>
+        <div class="button-container">
+        <app-button [text]="'Apply Now'" [buttonType]="'primary'"></app-button>
+        </div>
       </div>
       <div class="job-description">
         <div [innerHtml]="job.description"></div>

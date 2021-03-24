@@ -1,14 +1,20 @@
 @import '/src/styles.scss';
 
 .card {
-    margin-top: 2rem;
+    margin: 2rem 0;
     padding: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .flex-container {
     display: flex;
     align-items: center;
-    margin: 1.5rem 0 1rem;
 }
 
 .dot {

@@ -57,6 +57,10 @@ body.my-dark-mode {
             background: rgba(255, 255, 255, 0.25);
         }
     }
+
+    strong {
+        color: $white;
+    }
 }
 
 body.my-light-mode {
@@ -78,6 +82,10 @@ body.my-light-mode {
         &:hover {
             background-color: rgba(89, 100, 224, 0.35);
         }
+    }
+
+    strong {
+        color: $midnight;
     }
 }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Job } from 'src/app/states/jobsState/jobState.state';
 
 @Component({
@@ -14,7 +14,7 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
           </div>
         </div>
         <div class="button-container">
-          <app-button [text]="'Company Site'" [buttonType]="'secondary'"></app-button>
+          <app-button [text]="'Company Site'" [buttonType]="'secondary'" (click)="goToCompanySite.emit(job.company_url)"></app-button>
         </div>
       </div>
     </div>
@@ -23,4 +23,6 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
 })
 export class JobDetailsHeaderComponent {
   @Input() job!: Job;
+
+  @Output() goToCompanySite = new EventEmitter<string>();
 }
