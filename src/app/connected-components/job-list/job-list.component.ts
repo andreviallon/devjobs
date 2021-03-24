@@ -8,14 +8,16 @@ import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
 @Component({
   selector: 'job-list',
   template: `
-    <div *ngIf="fetchingJobs$ | async" class="loading-container">
-      <loading-spinner></loading-spinner>
-    </div>
-    <ng-container *ngIf="(jobs$ | async) as jobs">
-      <div class="jobs-list-container">
-        <job-card *ngFor="let job of jobs" [job]="job" (navigateToJob)="navigateToJob($event)"></job-card>
+    <div class="container">
+      <div *ngIf="fetchingJobs$ | async" class="loading-container">
+        <loading-spinner></loading-spinner>
       </div>
-    </ng-container>
+      <ng-container *ngIf="(jobs$ | async) as jobs">
+        <div class="jobs-list-container">
+          <job-card *ngFor="let job of jobs" [job]="job" (navigateToJob)="navigateToJob($event)"></job-card>
+        </div>
+      </ng-container>
+    </div>
   `,
   styleUrls: ['./job-list.component.scss']
 })

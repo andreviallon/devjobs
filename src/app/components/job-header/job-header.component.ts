@@ -15,7 +15,7 @@ import { ButtonType } from '../button/button.component';
           </div>
         </div>
         <div class="button-container">
-          <app-button [text]="'Company Site'" [buttonType]="'${ButtonType.SECONDARY}'"></app-button>
+          <app-button [text]="'Company Site'" [buttonType]="'secondary'"></app-button>
         </div>
       </div>
     </div>

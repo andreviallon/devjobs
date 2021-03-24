@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'header',
   template: `
     <div class="header">
       <div class="flex-container">
-        <h1>devjobs</h1>
+        <h1 (click)="navigateHome()">devjobs</h1>
         <dark-mode-toggle></dark-mode-toggle>
       </div>
     </div>
@@ -13,5 +15,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @Dispatch() navigateHome = () => new Navigate(['/']);
 
 }

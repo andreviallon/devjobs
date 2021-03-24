@@ -46,7 +46,6 @@ body.my-dark-mode {
     }
 
     .job-img {
-        background-color: $darkBlue;
         border: 1px solid $imgBorderDark;
     }
 
@@ -69,7 +68,6 @@ body.my-light-mode {
     }
 
     .job-img {
-        background-color: $white;
         border: 1px solid $imgBorderLight;
     }
 
@@ -118,6 +116,33 @@ p, span {
     line-height: 26px;
     color: $darkGray;
     margin: 0;
+}
+
+img {
+    background-color: $white;
+    object-fit: scale-down;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1340px;
+    padding: 0 2rem;
+
+    @media only screen and (max-width: $xl) {
+        max-width: 1140px;
+    }
+    
+    @media only screen and (max-width: $lg) {
+        max-width: 960px;
+    }
+
+    @media only screen and (max-width: $md) {
+        max-width: 720px;
+    }
+
+    @media only screen and (max-width: $sm) {
+        max-width: 540px;
+    }
 }
 
 .capitalize {

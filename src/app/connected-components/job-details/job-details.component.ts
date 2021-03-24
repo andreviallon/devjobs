@@ -9,12 +9,14 @@ import { SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
 @Component({
   selector: 'job-details',
   template: `
-    <div *ngIf="fetchingJobs$ | async" class="loading-container">
-      <loading-spinner></loading-spinner>
-    </div>
     <ng-container *ngIf="selectedJob$ | async as selectedJob">
       <job-header [job]="selectedJob"></job-header>
     </ng-container>
+    <div class="container">
+      <div *ngIf="fetchingJobs$ | async" class="loading-container">
+        <loading-spinner></loading-spinner>
+      </div>
+    </div>
   `,
   styleUrls: ['./job-details.component.scss']
 })
