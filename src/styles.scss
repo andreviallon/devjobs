@@ -115,12 +115,31 @@ p, span {
     font-size: 16px;
     line-height: 26px;
     color: $darkGray;
-    margin: 0;
 }
 
 img {
     background-color: $white;
     object-fit: scale-down;
+}
+
+ol li::marker {
+    color: $violet;
+    font-weight: bold;
+}
+
+ul li::marker {
+    color: $violet;
+    font-weight: bold;
+}
+
+ul li {
+    color: $darkGray;
+    margin: 0.2rem 0;
+    line-height: 1.6rem;
+}
+
+p {
+    margin: 1.5rem 0 0;
 }
 
 .container {
@@ -155,4 +174,8 @@ img {
     -moz-border-radius: 6px;
     -ms-border-radius: 6px;
     -o-border-radius: 6px;
+}
+
+.time {
+    text-transform: capitalize;
 }
