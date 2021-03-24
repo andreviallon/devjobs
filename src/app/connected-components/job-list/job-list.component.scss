@@ -17,4 +17,12 @@
     grid-auto-rows: 0.8fr;
     grid-gap: 3rem 2rem;
     margin-bottom: 5rem;
+
+    @media only screen and (max-width: $xl) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media only screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+    }
 }
