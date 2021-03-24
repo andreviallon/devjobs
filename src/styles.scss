@@ -31,10 +31,6 @@ body {
   
 body:not(.dark-mode-preloading) {
     transition: all 0.2s ease-out;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
 }
 
 body.my-dark-mode {
@@ -56,10 +52,6 @@ body.my-dark-mode {
         &:hover {
             background: rgba(255, 255, 255, 0.25);
         }
-    }
-
-    strong {
-        color: $white;
     }
 }
 
@@ -83,10 +75,6 @@ body.my-light-mode {
             background-color: rgba(89, 100, 224, 0.35);
         }
     }
-
-    strong {
-        color: $midnight;
-    }
 }
 
 h1 {
@@ -98,7 +86,7 @@ h1 {
 h2 {
     font-size: 24px;
     font-weight: bold;
-    line-height: 29px;
+    line-height: 29px;    
 }
 
 h3 {
@@ -106,10 +94,6 @@ h3 {
     font-weight: bold;
     line-height: 24px;
     transition: all 0.2s ease-out;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
 }
 
 h4 {
@@ -148,6 +132,34 @@ ul li {
 
 p {
     margin: 1.5rem 0 0;
+}
+
+a {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $white;
+    text-decoration: none;
+    border-bottom: 3px solid $white;
+    padding-bottom: 4px;
+}
+
+.job-description {
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 29px;
+        margin: 1.5rem 0 0;
+    }
+}
+
+.how-to-apply {
+    h3 {
+        color: $white;
+    }
+
+    p {
+        color: $white;
+    }
 }
 
 .container {

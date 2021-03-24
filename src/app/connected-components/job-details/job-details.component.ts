@@ -10,8 +10,9 @@ import { SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
   selector: 'job-details',
   template: `
     <ng-container *ngIf="selectedJob$ | async as selectedJob">
-      <job-details-header [job]="selectedJob" (goToCompanySite)="goToCompanySite($event)"></job-details-header>
-      <job-details-content [job]="selectedJob" (goToCompanySite)="goToCompanySite($event)"></job-details-content>
+      <job-details-header [job]="selectedJob" (goToCompanySite)="openLink($event)"></job-details-header>
+      <job-details-content [job]="selectedJob" (openJobUrl)="openLink($event)"></job-details-content>
+      <how-to-apply [job]="selectedJob"></how-to-apply>
     </ng-container>
     <div class="container">
       <div *ngIf="fetchingJobs$ | async" class="loading-container">
@@ -37,8 +38,7 @@ export class JobDetailsComponent implements OnInit {
     }))
   }
 
-  public goToCompanySite(url: string){
-
+  public openLink(url: string){
     window.open(url, "_blank");
   }
 

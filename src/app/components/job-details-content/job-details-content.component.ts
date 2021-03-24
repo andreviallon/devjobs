@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Job } from 'src/app/states/jobsState/jobState.state';
 import * as moment from 'moment';
 
@@ -17,7 +17,7 @@ import * as moment from 'moment';
           <h4>{{ job.location }}</h4>
         </div>
         <div class="button-container">
-        <app-button [text]="'Apply Now'" [buttonType]="'primary'"></app-button>
+        <app-button [text]="'Apply Now'" [buttonType]="'primary'" (click)="openJobUrl.emit(job.url)"></app-button>
         </div>
       </div>
       <div class="job-description">
@@ -29,6 +29,7 @@ import * as moment from 'moment';
 })
 export class JobDetailsContentComponent {
   @Input() job!: Job;
+  @Output() openJobUrl = new EventEmitter<string>();
 
   public timePosted!: string;
 

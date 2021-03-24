@@ -18,6 +18,7 @@ import { JobDetailsComponent } from './connected-components/job-details/job-deta
 import { JobDetailsHeaderComponent } from './components/job-details-header/job-details-header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { JobDetailsContentComponent } from './components/job-details-content/job-details-content.component';
+import { HowToApplyComponent } from './components/how-to-apply/how-to-apply.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { JobDetailsContentComponent } from './components/job-details-content/job
     JobDetailsComponent,
     JobDetailsHeaderComponent,
     ButtonComponent,
-    JobDetailsContentComponent
+    JobDetailsContentComponent,
+    HowToApplyComponent
   ],
   imports: [
     BrowserModule,

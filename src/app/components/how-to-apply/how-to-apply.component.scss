@@ -1,0 +1,13 @@
+@import '/src/styles.scss';
+
+.card {
+    margin: 2rem 0;
+    padding: 3rem;
+    background: url('../../../assets/footer-background.svg');
+    background-size: 100% auto;
+}
+
+h3 {
+    margin-top: 0;
+    color: $white;
+}

@@ -12,7 +12,7 @@ import * as moment from 'moment';
         <div class="dot"></div>
         <span>{{ job.type }}</span>        
       </div>
-      <h2>{{ job.title }}</h2>
+      <h3>{{ job.title }}</h3>
       <span>{{ job.company }}</span>
       <h4 class="capitalize location">{{ job.location }}</h4>
     </div>
