@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Job } from 'src/app/states/jobsState/jobState.state';
-import { ButtonType } from '../button/button.component';
 
 @Component({
-  selector: 'job-header',
+  selector: 'job-details-header',
   template: `
     <div class="card">
       <div class="column-container">
@@ -11,7 +10,7 @@ import { ButtonType } from '../button/button.component';
           <img src="{{ job.company_logo }}" />
           <div class="row-container">
             <h3>{{job.title}}</h3>
-            <p>{{job.company}}</p>
+            <span>{{job.company}}</span>
           </div>
         </div>
         <div class="button-container">
@@ -20,12 +19,8 @@ import { ButtonType } from '../button/button.component';
       </div>
     </div>
   `,
-  styleUrls: ['./job-header.component.scss']
+  styleUrls: ['./job-details-header.component.scss']
 })
-export class JobHeaderComponent {
+export class JobDetailsHeaderComponent {
   @Input() job!: Job;
-
-  ngOnInit() {
-    console.log('job header comp', this.job);
-  }
 }

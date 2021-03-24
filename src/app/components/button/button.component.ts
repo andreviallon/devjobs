@@ -15,8 +15,4 @@ export enum ButtonType {
 export class ButtonComponent {
   @Input() text!: string;
   @Input() buttonType!: string;
-
-  ngOnInit() {
-    console.log('buttonType', this.buttonType);
-  }
 }

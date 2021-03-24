@@ -10,7 +10,8 @@ import { SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
   selector: 'job-details',
   template: `
     <ng-container *ngIf="selectedJob$ | async as selectedJob">
-      <job-header [job]="selectedJob"></job-header>
+      <job-details-header [job]="selectedJob"></job-details-header>
+      <job-details-content [job]="selectedJob"></job-details-content>
     </ng-container>
     <div class="container">
       <div *ngIf="fetchingJobs$ | async" class="loading-container">

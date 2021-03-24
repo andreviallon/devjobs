@@ -15,8 +15,9 @@ import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { JobDetailsComponent } from './connected-components/job-details/job-details.component';
-import { JobHeaderComponent } from './components/job-header/job-header.component';
+import { JobDetailsHeaderComponent } from './components/job-details-header/job-details-header.component';
 import { ButtonComponent } from './components/button/button.component';
+import { JobDetailsContentComponent } from './components/job-details-content/job-details-content.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { ButtonComponent } from './components/button/button.component';
     JobCardComponent,
     LoadingSpinnerComponent,
     JobDetailsComponent,
-    JobHeaderComponent,
-    ButtonComponent
+    JobDetailsHeaderComponent,
+    ButtonComponent,
+    JobDetailsContentComponent
   ],
   imports: [
     BrowserModule,
