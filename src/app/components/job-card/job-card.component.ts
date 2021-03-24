@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Job } from 'src/app/states/jobsState/jobState.state';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'job-card',
@@ -9,6 +11,7 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
       <div class="flex-container">
         <p>{{ job.type }}</p>
         <div class="dot"></div>
+        <p>{{ timePosted }}</p>
       </div>
       <h2>{{ job.title }}</h2>
       <p>{{ job.company }}</p>
@@ -17,8 +20,14 @@ import { Job } from 'src/app/states/jobsState/jobState.state';
   `,
   styleUrls: ['./job-card.component.scss']
 })
-export class JobCardComponent {
+export class JobCardComponent implements OnChanges {
   @Input() job!: Job;
 
   @Output() navigateToJob = new EventEmitter<string>();
+
+  public timePosted!: string;
+
+  public ngOnChanges(): void {
+    this.timePosted = moment(this.job?.created_at).fromNow();
+  }
 }
