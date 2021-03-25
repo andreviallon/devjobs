@@ -9,7 +9,8 @@ export enum ButtonType {
   selector: 'app-button',
   template: `
     <button [ngClass]="buttonType" [disabled]="loading">
-      <div class="flex">{{ text }}
+      <div class="flex">
+      <span>{{ text }}</span>
         <div *ngIf="loading" class="lds-ring">
           <div></div>
         </div>
