@@ -7,7 +7,17 @@ export class FetchJobs {
 
 export class FetchJobsSuccess {
   static readonly type = '[Jobs State] Fetch jobs success';
-  constructor(public jobs: Job[]) { }
+  constructor(public jobs: Job[], public pageIndex: number) { }
+}
+
+export class FetchJob {
+  static readonly type = '[Jobs State] Fetch job';
+  constructor(public jobId: string) { }
+}
+
+export class FetchJobSuccess {
+  static readonly type = '[Jobs State] Fetch job success';
+  constructor(public job: Job) { }
 }
 
 export class SetSelectedJob {

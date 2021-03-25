@@ -1,10 +1,10 @@
 import { Action, Selector, State, StateContext, StateToken } from "@ngxs/store";
 import { Injectable } from "@angular/core";
 import { ImmutableContext } from "@ngxs-labs/immer-adapter";
-import { FetchJobs, FetchJobsSuccess, SetSelectedJob } from "./jobState.state.action";
+import { FetchJob, FetchJobs, FetchJobsSuccess, FetchJobSuccess, SetSelectedJob } from "./jobState.state.action";
 import axios from "axios";
 
-const JOBS_API = 'https://cors.bridged.cc/https://jobs.github.com/positions.json';
+const JOBS_API = 'https://cors.bridged.cc/https://jobs.github.com/positions';
 
 export interface Job {
   id: string;
@@ -35,7 +35,7 @@ export interface JobsStateModel {
 export const JobsStateModelDefaults: JobsStateModel = {
   jobs: {},
   selectedJobId: undefined,
-  pageIndex: 0,
+  pageIndex: 1,
   fetchingJobs: false,
   errorMessage: ''
 };
@@ -66,6 +66,11 @@ export class JobsState {
   }
   
   @Selector([JOBS_STATE])
+  static pageIndex(state: JobsStateModel): number {
+    return state.pageIndex;
+  }
+
+  @Selector([JOBS_STATE])
   static selectedJob(state: JobsStateModel): Job | undefined {
     return state.jobs && state.selectedJobId ? state.jobs[state.selectedJobId] : undefined;
   }
@@ -80,9 +85,9 @@ export class JobsState {
         return state;
       });
 
-      const { data } = await axios.get(`${JOBS_API}?page=${pageIndex}`);
+      const { data } = await axios.get(`${JOBS_API}.json?page=${pageIndex}`);
 
-      dispatch(new FetchJobsSuccess(data));
+      dispatch(new FetchJobsSuccess(data, pageIndex));
     } catch (err) {
       setState((state: JobsStateModel) => {
         state.fetchingJobs = false;
@@ -94,15 +99,53 @@ export class JobsState {
 
   @Action(FetchJobsSuccess)
   @ImmutableContext()
-  fetchJobsSuccess({ setState }: StateContext<JobsStateModel>, { jobs }: FetchJobsSuccess) {
-    const jobDictionary: JobDictionary = {};
-
-    for (const job of jobs) {
-      jobDictionary[job.id] = job;
-    }
-
+  fetchJobsSuccess({ setState }: StateContext<JobsStateModel>, { jobs, pageIndex }: FetchJobsSuccess) {
     setState((state: JobsStateModel) => {
+      const jobDictionary: JobDictionary = state.jobs;
+
+      for (const job of jobs) {
+        jobDictionary[job.id] = job;
+      }
+
       state.jobs = jobDictionary;
+      state.fetchingJobs = false;
+      state.pageIndex = pageIndex;
+
+      return state;
+    });
+  }
+
+  @Action(FetchJob)
+  @ImmutableContext()
+  async fetchJob({ getState, setState, dispatch }: StateContext<JobsStateModel>, { jobId }: FetchJob) {
+    try {
+      if (getState().jobs[jobId]) {
+        return;
+      }
+
+      setState((state: JobsStateModel) => {
+        state.fetchingJobs = true;
+        state.errorMessage = '';
+        return state;
+      });
+
+      const { data } = await axios.get(`${JOBS_API}/${jobId}.json`);
+
+      dispatch(new FetchJobSuccess(data));
+    } catch (err) {
+      setState((state: JobsStateModel) => {
+        state.fetchingJobs = false;
+        state.errorMessage = 'No job found.';
+        return state;
+      });
+    }
+  }
+
+  @Action(FetchJobSuccess)
+  @ImmutableContext()
+  fetchJobSuccess({ setState }: StateContext<JobsStateModel>, { job }: FetchJobSuccess) {
+    setState((state: JobsStateModel) => {
+      state.jobs[job.id] = job;
       state.fetchingJobs = false;
       return state;
     });

@@ -1,7 +1,7 @@
 @import '/src/styles.scss';
 
 .container {
-    margin: 6rem 0 0;
+    margin: 6rem 0 5rem;
 }
 
 .loading-container {
@@ -14,9 +14,7 @@
 .jobs-list-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 0.8fr;
     grid-gap: 3rem 2rem;
-    margin-bottom: 5rem;
 
     @media only screen and (max-width: $xl) {
         grid-template-columns: 1fr 1fr;
@@ -25,4 +23,10 @@
     @media only screen and (max-width: $md) {
         grid-template-columns: 1fr;
     }
+}
+
+.button-container {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
 }

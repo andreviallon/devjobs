@@ -4,7 +4,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
-import { SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
+import { FetchJob, SetSelectedJob } from 'src/app/states/jobsState/jobState.state.action';
 
 @Component({
   selector: 'job-details',
@@ -27,15 +27,20 @@ export class JobDetailsComponent implements OnInit {
   @Select(JobsState.fetchingJobs) fetchingJobs$!: Observable<boolean>;
 
   @Dispatch() setSelectedJob = (jobId: string) => new SetSelectedJob(jobId);
+  @Dispatch() fetchJob = (jobId: string) => new FetchJob(jobId);
 
   private subscription = new Subscription();
+
+  public jobId: string = '';
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
     this.subscription.add(this.route.params.subscribe(params => {
-      this.setSelectedJob(params.id);
-    }))
+      const jobId = params.id;
+      this.setSelectedJob(jobId);
+      this.fetchJob(params.id);
+    }));
   }
 
   public openLink(url: string){

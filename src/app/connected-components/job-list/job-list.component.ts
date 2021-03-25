@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
+import { FetchJobs } from 'src/app/states/jobsState/jobState.state.action';
 
 @Component({
   selector: 'job-list',
@@ -16,14 +17,38 @@ import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
         <div class="jobs-list-container">
           <job-card *ngFor="let job of jobs" [job]="job" (navigateToJob)="navigateToJob($event)"></job-card>
         </div>
+        <div class="button-container">
+          <app-button [text]="'Load more'" [buttonType]="'primary'" [loading]="fetchingJobs$ | async" (click)="loadJobs()"></app-button>
+        </div>
       </ng-container>
     </div>
   `,
   styleUrls: ['./job-list.component.scss']
 })
-export class JobListComponent { 
+export class JobListComponent implements OnInit, OnDestroy { 
   @Select(JobsState.jobs) jobs$!: Observable<Job[]>;
   @Select(JobsState.fetchingJobs) fetchingJobs$!: Observable<boolean>;
+  @Select(JobsState.pageIndex) pageIndex$!: Observable<number>;
 
   @Dispatch() navigateToJob = (jobId: string) => new Navigate(['/job', jobId]);
+  @Dispatch() fetchJobs = (pageIndex: number) => new FetchJobs(pageIndex);
+
+  private subscription = new Subscription();
+
+  public pageIndex: number = 1;
+
+  public ngOnInit(): void {
+    this.subscription.add(
+      this.pageIndex$.subscribe((pageIndex: number) => this.pageIndex = pageIndex)
+    )
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public loadJobs(): void {
+    const nextPage = this.pageIndex + 1;
+    this.fetchJobs(nextPage);
+  }
 }
