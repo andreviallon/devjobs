@@ -53,6 +53,11 @@ body.my-dark-mode {
             background: rgba(255, 255, 255, 0.25);
         }
     }
+
+    input[type=text] {
+        background-color: $darkBlue;
+        color: $white;
+    }
 }
 
 body.my-light-mode {

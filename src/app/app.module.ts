@@ -19,6 +19,7 @@ import { JobDetailsHeaderComponent } from './components/job-details-header/job-d
 import { ButtonComponent } from './components/button/button.component';
 import { JobDetailsContentComponent } from './components/job-details-content/job-details-content.component';
 import { HowToApplyComponent } from './components/how-to-apply/how-to-apply.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HowToApplyComponent } from './components/how-to-apply/how-to-apply.comp
     JobDetailsHeaderComponent,
     ButtonComponent,
     JobDetailsContentComponent,
-    HowToApplyComponent
+    HowToApplyComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

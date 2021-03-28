@@ -9,7 +9,8 @@ import { FetchJobs } from 'src/app/states/jobsState/jobState.state.action';
 @Component({
   selector: 'job-list',
   template: `
-    <div class="container">
+    <filter></filter>
+    <div class="jobs-container">
       <div *ngIf="fetchingJobs$ | async" class="loading-container">
         <loading-spinner></loading-spinner>
       </div>

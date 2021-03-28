@@ -1,6 +1,10 @@
 @import '/src/styles.scss';
 
-.container {
+:host {
+    position: relative;
+}
+
+.jobs-container {
     margin: 6rem 0 5rem;
 }
 
