@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext, StateToken } from "@ngxs/store";
 import { Injectable } from "@angular/core";
 import { ImmutableContext } from "@ngxs-labs/immer-adapter";
-import { FetchJob, FetchJobs, FetchJobsSuccess, FetchJobSuccess, SetSelectedJob } from "./jobState.state.action";
+import { FetchJob, FetchJobs, FetchJobsSuccess, FetchJobSuccess, SetSearchQuery, SetSelectedJob } from "./jobState.state.action";
 import axios from "axios";
 
 const JOBS_API = 'https://cors.bridged.cc/https://jobs.github.com/positions';
@@ -30,6 +30,7 @@ export interface JobsStateModel {
   pageIndex: number;
   fetchingJobs: boolean;
   errorMessage: string;
+  searchQuery: string;
 }
 
 export const JobsStateModelDefaults: JobsStateModel = {
@@ -37,7 +38,8 @@ export const JobsStateModelDefaults: JobsStateModel = {
   selectedJobId: undefined,
   pageIndex: 1,
   fetchingJobs: false,
-  errorMessage: ''
+  errorMessage: '',
+  searchQuery: ''
 };
 
 export const JOBS_STATE = new StateToken<JobsStateModel>(
@@ -51,8 +53,8 @@ export const JOBS_STATE = new StateToken<JobsStateModel>(
 @Injectable()
 export class JobsState {
   @Selector([JOBS_STATE])
-  static jobs(state: JobsStateModel): Job[] | null {
-    return Object.keys(state.jobs).length ? Object.values(state.jobs) : null;
+  static jobs(state: JobsStateModel): Job[] {
+    return Object.keys(state.jobs).length ? Object.values(state.jobs) : [];
   }
 
   @Selector([JOBS_STATE])
@@ -77,7 +79,7 @@ export class JobsState {
 
   @Action(FetchJobs)
   @ImmutableContext()
-  async fetchJobs({ setState, dispatch }: StateContext<JobsStateModel>, { pageIndex }: FetchJobs) {
+  async fetchJobs({ setState, dispatch, getState }: StateContext<JobsStateModel>, { pageIndex }: FetchJobs) {
     try {
       setState((state: JobsStateModel) => {
         state.fetchingJobs = true;
@@ -85,7 +87,11 @@ export class JobsState {
         return state;
       });
 
-      const { data } = await axios.get(`${JOBS_API}.json?page=${pageIndex}`);
+      const searchQuery = getState().searchQuery;
+
+      const baseApi = `${JOBS_API}.json?page=${pageIndex}`;
+      const api = searchQuery ? `${baseApi}&description=${searchQuery}` : baseApi;
+      const { data } = await axios.get(api);
 
       dispatch(new FetchJobsSuccess(data, pageIndex));
     } catch (err) {
@@ -156,6 +162,16 @@ export class JobsState {
   setSelectedJob({ setState }: StateContext<JobsStateModel>, { jobId }: SetSelectedJob) {
     setState((state: JobsStateModel) => {
       state.selectedJobId = jobId;
+      return state;
+    });
+  }
+
+  @Action(SetSearchQuery)
+  @ImmutableContext()
+  setSearchQuery({ setState }: StateContext<JobsStateModel>, { searchQuery }: SetSearchQuery) {
+    setState((state: JobsStateModel) => {
+      state.searchQuery = searchQuery;
+      state.jobs = {};
       return state;
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,30 +9,27 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
       <form [formGroup]="filterForm">
         <div class="search-container">
           <fa-icon [icon]="faSearch"></fa-icon>
-          <input type="text" placeholder="Filter by title, companies, expertise…" formControlName="searchQuery">
+          <input type="text" placeholder="Filter by title..." formControlName="searchQuery">
         </div>
-        <app-button [text]="'Search'" [buttonType]="'primary'" (click)="search()"></app-button>
+        <app-button [text]="'Search'" [buttonType]="'primary'" (click)="onSearch()"></app-button>
       </form>  
     </div>
   `,
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
+  @Output() search = new EventEmitter<string>();
+
   public faSearch = faSearch;
 
   public filterForm = this.fb.group({
-    searchQuery: [''],
-    location: [''],
-    fullTime: [false]
-  });;
+    searchQuery: ['']
+  });
 
   constructor(private fb: FormBuilder) { }
-
-  public ngOnInit(): void {
+  
+  public onSearch(): void {
+    const searchQuery = this.filterForm.get('searchQuery')?.value;
+    this.search.emit(searchQuery);
   }
-
-  public search() {
-    console.log('onSubmit', this.filterForm);
-  }
-
 }

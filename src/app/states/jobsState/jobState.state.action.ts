@@ -24,3 +24,8 @@ export class SetSelectedJob {
   static readonly type = '[Jobs State] Set selected job';
   constructor(public jobId: string) { }
 }
+
+export class SetSearchQuery {
+  static readonly type = '[Jobs State] Set search query';
+  constructor(public searchQuery: string) { }
+}
