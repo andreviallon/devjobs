@@ -1,3 +1,4 @@
+import { ISearchParams } from "src/app/components/filter/filter.component";
 import { Job } from "./jobState.state";
 
 export class FetchJobs {
@@ -27,5 +28,5 @@ export class SetSelectedJob {
 
 export class SetSearchQuery {
   static readonly type = '[Jobs State] Set search query';
-  constructor(public searchQuery: string) { }
+  constructor(public searchParams: ISearchParams) { }
 }

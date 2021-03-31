@@ -6,8 +6,13 @@
 
 form {
     display: grid;
-    grid-template-columns: 11fr 1fr;
+    grid-template-columns: 6fr 6fr 2fr 1fr;
     grid-gap: 3rem 2rem;
+
+    @media only screen and (max-width: $md) {
+        grid-template-columns: 1fr;
+        grid-gap: 2rem 0;
+    }
 }
 
 input[type=text] {
@@ -25,7 +30,7 @@ input[type=text] {
     }
 }
 
-.search-container {
+.search-container, .location-container, .full-time-container {
     display: flex;
     align-items: center;
 }
@@ -40,10 +45,62 @@ fa-icon {
     display: flex;
 }
 
-.checkbox {
-    display: flex;
-
-    span {
-        line-height: auto;
-    }
+.full-time {
+    font-size: 1.1rem;
+    font-weight: bold;
 }
+
+label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  label input {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: $gray;
+    border-radius: 4px;
+  }
+
+  label input:checked ~ .checkmark {
+    background-color: $violet;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  label input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  label .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  app-button {
+    display: flex;
+    justify-content: center;
+  }

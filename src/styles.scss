@@ -58,6 +58,10 @@ body.my-dark-mode {
         background-color: $darkBlue;
         color: $white;
     }
+
+    .full-time {
+        color: $white;
+    }
 }
 
 body.my-light-mode {
@@ -79,6 +83,10 @@ body.my-light-mode {
         &:hover {
             background-color: rgba(89, 100, 224, 0.35);
         }
+    }
+
+    .full-time {
+        color: $midnight;
     }
 }
 

@@ -31,6 +31,8 @@ export interface JobsStateModel {
   fetchingJobs: boolean;
   errorMessage: string;
   searchQuery: string;
+  location: string;
+  fullTime: boolean;
 }
 
 export const JobsStateModelDefaults: JobsStateModel = {
@@ -39,7 +41,9 @@ export const JobsStateModelDefaults: JobsStateModel = {
   pageIndex: 1,
   fetchingJobs: false,
   errorMessage: '',
-  searchQuery: ''
+  searchQuery: '',
+  location: '',
+  fullTime: false
 };
 
 export const JOBS_STATE = new StateToken<JobsStateModel>(
@@ -88,9 +92,24 @@ export class JobsState {
       });
 
       const searchQuery = getState().searchQuery;
+      const location = getState().location;
+      const fullTime = getState().fullTime;
 
       const baseApi = `${JOBS_API}.json?page=${pageIndex}`;
-      const api = searchQuery ? `${baseApi}&description=${searchQuery}` : baseApi;
+      let api: string = baseApi;
+
+      if (searchQuery) {
+        api = `${api}&description=${searchQuery}`
+      }
+
+      if (location) {
+        api = `${api}&location=${location}`
+      }
+
+      if (fullTime) {
+        api = `${api}&full_time=${fullTime}`
+      }
+
       const { data } = await axios.get(api);
 
       dispatch(new FetchJobsSuccess(data, pageIndex));
@@ -168,9 +187,11 @@ export class JobsState {
 
   @Action(SetSearchQuery)
   @ImmutableContext()
-  setSearchQuery({ setState }: StateContext<JobsStateModel>, { searchQuery }: SetSearchQuery) {
+  setSearchQuery({ setState }: StateContext<JobsStateModel>, { searchParams }: SetSearchQuery) {
     setState((state: JobsStateModel) => {
-      state.searchQuery = searchQuery;
+      state.searchQuery = searchParams.searchQuery;
+      state.location = searchParams.location;
+      state.fullTime = searchParams.fullTime;
       state.jobs = {};
       return state;
     });

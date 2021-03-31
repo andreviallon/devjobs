@@ -3,6 +3,7 @@ import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { ISearchParams } from 'src/app/components/filter/filter.component';
 import { Job, JobsState } from 'src/app/states/jobsState/jobState.state';
 import { FetchJobs, SetSearchQuery } from 'src/app/states/jobsState/jobState.state.action';
 
@@ -36,7 +37,7 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   @Dispatch() navigateToJob = (jobId: string) => new Navigate(['/job', jobId]);
   @Dispatch() fetchJobs = (pageIndex: number) => new FetchJobs(pageIndex);
-  @Dispatch() setSearchQuery = (searchQuery: string) => new SetSearchQuery(searchQuery);
+  @Dispatch() setSearchQuery = (searchParams: ISearchParams) => new SetSearchQuery(searchParams);
 
   private subscription = new Subscription();
 
@@ -62,8 +63,8 @@ export class JobListComponent implements OnInit, OnDestroy {
     this.fetchJobs(nextPage);
   }
 
-  public search(searchQuery: string): void {
-    this.setSearchQuery(searchQuery);
+  public search(searchParams: ISearchParams): void {
+    this.setSearchQuery(searchParams);
     this.fetchJobs(0);
   }
 }
