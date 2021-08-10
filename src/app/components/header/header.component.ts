@@ -7,7 +7,7 @@ import { Navigate } from '@ngxs/router-plugin';
   template: `
     <div class="header">
       <div class="flex-container">
-        <h1 (click)="navigateHome()">Devjobs</h1>
+        <h1 (click)="navigateHome()">Devjobs test</h1>
         <dark-mode-toggle></dark-mode-toggle>
       </div>
     </div>
