@@ -12,9 +12,8 @@ import { Navigate } from '@ngxs/router-plugin';
       </div>
     </div>
   `,
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Dispatch() navigateHome = () => new Navigate(['/']);
-
 }
